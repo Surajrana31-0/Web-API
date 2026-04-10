@@ -105,6 +105,21 @@ const updateProduct = (id, updateObj) => new Promise(
         resolve(products[index]);
     }
 )
+// 6. deleteProduct
+// -- takes id as argument and deletes product with that id,
+// if not found, reject with error, if deleted, resolve with success message
+
+const deleteProduct = (id) => new Promise(
+    (resolve, reject) => {
+        const index = products.findIndex(p => p.id === id);
+        if (index === -1) {
+            reject(new Error(`Product not found`));
+            return;
+        }
+        products.splice(index, 1);
+        resolve(`Product deleted successfully`);
+    }
+)
 
 
 const run = async () => {
@@ -129,6 +144,10 @@ const run = async () => {
         //update products=========
         const updated = await updateProduct(101, { price: 55000, name: "Laptop Pro" });
         console.log("Updated:", updated);
+
+        //delet product=========
+        const deleted = await deleteProduct(104);
+        console.log(deleted);
     }catch (error) {
         console.error("Error:", error.message);
     }
