@@ -37,6 +37,10 @@ const createProduct = (product) => new Promise(
 const getProducts = () => new Promise(
     (resolve, reject) => {
         setTimeout(() => {
+            if (products.length === 0){
+                reject(new Error("No products found."));
+                return;
+            }
             resolve(products);
         }, 2000);
     }
@@ -67,7 +71,8 @@ const getProductById = (id) => new Promise(
 
 const searchProduct = (name) => new Promise(
     (resolve, reject) => {
-        const filtered = products.filter(
+        setTimeout(() => {
+            const filtered = products.filter(
             p => p.name.toLowerCase().includes(name.toLowerCase())
         );
         if (filtered.length > 0) {
@@ -75,6 +80,10 @@ const searchProduct = (name) => new Promise(
         } else {
             reject(new Error(`No products found matching "${name}"`));
         }
+
+
+        },1000 );
+        
     }
 )
 
@@ -148,7 +157,12 @@ const run = async () => {
         //delet product=========
         const deleted = await deleteProduct(104);
         console.log(deleted);
+
+        const list = await getProducts();
+        console.log(list);
     }catch (error) {
         console.error("Error:", error.message);
     }
 }
+
+run();
