@@ -79,6 +79,34 @@ const searchProduct = (name) => new Promise(
 )
 
 
+
+// const searchProduct = (name) => new Promise(
+//     (resolve, reject) => {
+//        const filtered = product.filter(
+//         p=> p.name === search
+//        )
+//        resolve(filtered)
+//     }
+
+// )
+// 5. updateProduct, 
+// -- takes id and update object as arguments, 
+// finds product by id and updates it with the update object, 
+// if not found, reject with error
+
+const updateProduct = (id, updateObj) => new Promise(
+    (resolve, reject) => {
+        const index = products.findIndex(p => p.id === id);
+        if (index === -1) {
+            reject(new Error(`Product not found`));
+            return;
+        }
+        products[index] = { ...products[index], ...updateObj };
+        resolve(products[index]);
+    }
+)
+
+
 const run = async () => {
     try{
         //create ======
@@ -96,6 +124,11 @@ const run = async () => {
         //search product============
         const searched = await searchProduct("mobile");
         console.log("Search Result:", searched);
+
+
+        //update products=========
+        const updated = await updateProduct(101, { price: 55000, name: "Laptop Pro" });
+        console.log("Updated:", updated);
     }catch (error) {
         console.error("Error:", error.message);
     }
