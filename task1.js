@@ -31,10 +31,28 @@ const createProduct = (product) => new Promise(
 )
 
 
+// 2. getProducts, 
+// -- returns all products after 2 seconds delay using Promise
+
+const getProducts = () => new Promise(
+    (resolve, reject) => {
+        setTimeout(() => {
+            resolve(products);
+        }, 2000);
+    }
+)
+
+
 const run = async () => {
     try{
-
+        //create ======
         const newProduct = await createProduct({ id: 105, name: "Keyboard", price: 5000 });
         console.log("Created:", newProduct);
+
+        //getAll product=====
+        const allProducts = await getProducts();
+        console.log("All Products:", allProducts);
+    }catch (error) {
+        console.error("Error:", error.message);
     }
 }
