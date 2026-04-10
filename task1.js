@@ -43,6 +43,42 @@ const getProducts = () => new Promise(
 )
 
 
+// 3. getProductById, 
+// -- takes id as argument and returns product with that id after 1 second delay 
+// using Promise, if not found, reject with error
+
+const getProductById = (id) => new Promise(
+    (resolve, reject)=> {
+        setTimeout(() => {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                resolve(product);
+            } else {
+                reject(new Error("Product not found"));
+            }
+        }, 1000);
+    }
+)
+
+
+// 4. searchProduct,
+// -- takes name as argument and returns all products that match the name
+
+
+const searchProduct = (name) => new Promise(
+    (resolve, reject) => {
+        const filtered = products.filter(
+            p => p.name.toLowerCase().includes(name.toLowerCase())
+        );
+        if (filtered.length > 0) {
+            resolve(filtered);
+        } else {
+            reject(new Error(`No products found matching "${name}"`));
+        }
+    }
+)
+
+
 const run = async () => {
     try{
         //create ======
@@ -52,6 +88,14 @@ const run = async () => {
         //getAll product=====
         const allProducts = await getProducts();
         console.log("All Products:", allProducts);
+
+        //get by id----------
+        const found = await getProductById(103);
+        console.log("Found:", found);
+
+        //search product============
+        const searched = await searchProduct("mobile");
+        console.log("Search Result:", searched);
     }catch (error) {
         console.error("Error:", error.message);
     }
