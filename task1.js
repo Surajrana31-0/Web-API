@@ -19,7 +19,7 @@ const createProduct = (product) => new Promise(
     (resolve, reject) => {
         const existing = products.find(p => p.id === product.id);
         if (existing) {
-            reject(new Error(`Product with id ${product.id} already exists`));
+            reject(new Error(`Product already exists`));
             return;
         }
         if (!product.name) product.name = "Unknown Product";
