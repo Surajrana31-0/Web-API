@@ -1,0 +1,27 @@
+{
+  "name": "web-api",
+  "version": "1.0.0",
+  "main": "crud.js",
+  "scripts": {
+    "start": "node day1js",
+    "start-sync": "node sync.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Surajrana31-0/Web-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Surajrana31-0/Web-API/issues"
+  },
+  "homepage": "https://github.com/Surajrana31-0/Web-API#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}
