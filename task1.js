@@ -30,6 +30,21 @@ const createProduct = (product) => new Promise(
     }
 )
 
+// const createFruits = (fruits) =>  new Promise(
+//     (resolve, reject)=> {
+//         const existing = fruits.find(f=>fruits.id === fruits.id);
+//         if (existing){
+//             reject(new Error(`Fruits already exists`));
+//             return;
+//         }
+//         if(!fruits.name) fruits.name = "Unknown fruits";
+//         if (!fruits.price) fruits.price = 0;
+
+//         fruits.push(fruits);
+//         resolve(fruits);
+//     }
+// )
+
 
 // 2. getProducts, 
 // -- returns all products after 2 seconds delay using Promise
