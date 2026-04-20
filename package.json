@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "crud.js",
   "scripts": {
+    "dev": "npx tsx --watch product.ts",
     "start": "node day1js",
     "start-sync": "node sync.js",
     "test": "echo \"Error: no test specified\" && exit 1"
