@@ -29,7 +29,7 @@ const  products: Product[] = [
 ];
 
 //get all product
-app.get(
+app.get(//http://localhost:808/api/products
     "/api/products",
     (req:Request, res:Response)=>{
         return res.status(200).json(products);
@@ -38,7 +38,7 @@ app.get(
 
 
 //get product by Id
-app.get(
+app.get(//http://localhost:808/api/products/2
     '/api/products/:id',
     (req:Request, res:Response)=>{
         const {id} = req.params;
@@ -52,7 +52,7 @@ app.get(
 );
 
 
-app.post(
+app.post(//http://localhost:808/api/products
     '/api/products',
     (req:Request, res:Response)=>{
         const {name, price, category} =req.body;
@@ -68,7 +68,7 @@ app.post(
 );
 
 //update by id
-app.put(
+app.put(//http://localhost:808/api/products/1
     '/api/products/:id',
     (req: Request, res: Response) => {
     const { id } = req.params;
@@ -94,7 +94,7 @@ app.put(
 );
 
 //delete by id
-app.delete(
+app.delete(//http://localhost:808/api/products/1
     '/api/products/:id',
     (req: Request, res: Response) => {
     const { id } = req.params;
