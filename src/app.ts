@@ -3,6 +3,8 @@ import { title } from "node:process";
 // import { router } from "./routes/person.route";
 import personRoutes from "./routes/person.route";
 import { error } from "node:console";
+import { HttpException } from "./exceptions/http-exception";
+import { ApiResponseHelper } from "./utils/api-response";
 const app: Application = express();
 app.use(express.json());//use json as request
 app.use(express.urlencoded({extended:true}));//usse form-urlencoded as a request
@@ -148,11 +150,29 @@ app.use(
 //global error handler
 app.use(
     (err:Error, req:Request, res:Response, next:NextFunction)=>{
-        return res.status(500).json({
-            message:err.message ?? " Internal server error"
-        });
+        if(err instanceof HttpException){
+            return ApiResponseHelper.error(
+                res,
+                err.message,
+                err.status
+            );
+        }
+        return ApiResponseHelper.error(
+            res,
+            err?.message||"Internal Server error",
+            500
+        )
     }
-);
+)
+
+
+// app.use(
+//     (err:Error, req:Request, res:Response, next:NextFunction)=>{
+//         return res.status(500).json({
+//             message:err.message ?? " Internal server error"
+//         });
+//     }
+// );
 
 const PORT: number = 8088;
 const dummy: String = "Dummy";

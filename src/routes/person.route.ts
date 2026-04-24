@@ -10,4 +10,16 @@ router.get(
     '/',
     personController.getAllPersons
 )
+
+router.post(
+    '/',
+    personController.createPerson
+)
+
+router.put(
+    '/api/persons/:id',
+    personController.updatePerson
+)
+
+
 export default router;
