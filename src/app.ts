@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}));//usse form-urlencoded as a request
 
 app.use ("/api/person", personRoutes); 
 
-
+//npm i zod
 
 const data=[
     {id:1, name:"John", age:30},
