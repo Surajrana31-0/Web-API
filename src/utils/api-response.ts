@@ -1,38 +1,10 @@
+/*
+Legacy Code Copy (Archived)
+This block preserves the old helper code for easy comparison.
 
-// import { stat } from "node:fs";
-
-// export {Response} from "express";
-
-// //Consisent API
-// const res_example ={
-//      "status":200,
-//       "data":{
-//     //..data
-//     },
-//     "message":"success",
-//     "meta":{
-//         //[pagination, etc]
-//         "page":1,
-//         "limit":10,
-//         "total":100
-//     }
-// }
-
-// import { response } from "express";
-// export interface paginationMeta {
-//     page:number;
-//     limit:number;
-//     total:number;
-// }
-// export interface ApiResponse<T> {
-//     status:number;
-//     data: T;
-//     message:string;
-//     meta?:paginationMeta;//if nullable use "?"
-// }
 // export class ApiResponseHelper {
 //     static success<T>(
-//         res:Response, 
+//         res:Response,
 //         data: T,
 //         message: String = "Success",
 //         status:number = 200,
@@ -58,52 +30,49 @@
 //     }
 //     return res.status(status).json(data);
 // }
+*/
 
-
-
-// Consistent API
-const res_example = {
-    "status": 200,
-    "data": {
-        // .. data
-    },
-    "message": "Success",
-    "meta": {
-        // pagination, etc
-        "page": 1,
-        "limit": 10,
-        "total": 100
-    }
-}
 import { Response } from "express";
+
 export interface PaginationMeta {
     page: number;
     limit: number;
     total: number;
 }
+
 export interface ApiResponse<T> {
     status: number;
     data: T;
     message: string;
     meta?: PaginationMeta;
 }
+
 export class ApiResponseHelper {
-    static error(res: Response<any, Record<string, any>>, arg1: any, arg2: any) {
-        throw new Error("Method not implemented.");
-    }
     static success<T>(
-        res: Response, 
-        data: T, 
+        res: Response,
+        data: T,
         status: number = 200,
-        message: string = "Success", 
+        message: string = "Success",
         meta?: PaginationMeta
     ) {
         const response: ApiResponse<T> = {
             status,
             data,
             message,
-            meta
-        }
+            meta,
+        };
+
         return res.status(status).json(response);
+    }
+
+    static error(
+        res: Response,
+        message: string = "Error",
+        status: number = 500
+    ) {
+        return res.status(status).json({
+            status,
+            message,
+        });
     }
 }

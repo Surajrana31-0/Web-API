@@ -1,4 +1,4 @@
-import { Person } from "../types/person.type"
+
 
 // export const data=[
 //     {id:1, name:"John", age:30},
@@ -7,7 +7,9 @@ import { Person } from "../types/person.type"
 //     {id:4, name:"Shyam", age:12},
 //     {id:5, name:"Ram", age:45},
 // ]
-//can use domain model here
+//can use 
+
+import { Person } from "../types/person.type";
 
 export const data: Person[]=[
     {id:1, name:"John", age:30},

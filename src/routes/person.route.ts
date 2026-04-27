@@ -17,7 +17,7 @@ router.post(
 )
 
 router.put(
-    '/api/persons/:id',
+    '/:id',
     personController.updatePerson
 )
 
